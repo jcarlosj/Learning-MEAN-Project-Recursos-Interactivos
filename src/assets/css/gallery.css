@@ -1,0 +1,26 @@
+/* Gallery */
+#gallery {
+	background-color: white;
+	margin:auto;
+	position:relative;
+	width:100%;
+}
+
+#gallery ul{
+	padding:20px;
+}
+
+#gallery ul li{
+	padding:10px;
+	transition:.6s;
+}
+
+#gallery ul li:hover{
+	opacity:.6;
+	transition:.6s;
+}
+
+#gallery ul li img{
+	cursor:pointer;
+	width:100%;
+}

@@ -1,0 +1,75 @@
+/* Formulario */
+#formulario {
+  background-color: white;
+}
+
+#formulario-home form {
+  background-color: #DDD;
+  height: auto;
+  margin: auto;
+  padding: 2%;
+  position: relative;
+  width: 70%;
+}
+
+#formulario-home form h1 {
+  width: 100%;
+  line-height: 50px;
+  background-color: black;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+
+#formulario-home input,
+#formulario-home label,
+#formulario-home textarea,
+#formulario-home p,
+#formulario-home select {
+  display: block;
+  font-size: 14px;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+
+/* Oculta los mensajes de los campos input (nombre, clave y correo electrónico) */
+#formulario-home label span.obligatorio {
+  color: red;
+  opacity: 0;
+}
+
+/* Oculta los input tipo: checkbox y radio */
+#formulario-home input[type='checkbox'],
+#formulario-home input[type='radio'] {
+  display: none;
+}
+
+/* Simula los nuevos campos 'input' (checkbox 7 radio) */
+#formulario-home label.checkbox-field span,
+#formulario-home label.radio-field span {
+  background-color: white;
+  display: inline-block;
+  height: 25px;
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 25px;
+}
+
+/* Vuelve redondos los campos que simulan los campos 'radio' */
+#formulario-home label.radio-field span {
+  border-radius: 100%;
+}
+
+/* Despliega la imagen cuando el elemento 'checkbox' a sido seleccionado */
+#formulario-home input[type='checkbox']:checked + label.checkbox-field span {
+  background: url( '../images/formulario/box.jpg' );
+}
+
+/* Despliega la imagen cuando el elemento 'radio' a sido seleccionado */
+#formulario-home input[type='radio']:checked + label.radio-field span {
+  background: url( '../images/formulario/radio.jpg' );
+}
+
+/* NOTA: Al usar el símbolo + (más) selecciona todos los elementos que están inmediatamente después (no dentro)
+         Este selector es conocido como SELECTOR ABYACENTE */

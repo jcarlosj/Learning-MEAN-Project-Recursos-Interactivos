@@ -1,0 +1,17 @@
+/* Mouse Effect */
+#content-mouse-effect {
+  /* SOLUCIONA: Propiedad overflow: hidden no funciona en Firefox */
+  overflow: -moz-hidden-unscrollable;
+}
+
+#mouse-effect {
+  overflow: hidden;      /* Enmascarar */
+  position: relative;
+  width: 100%;
+}
+
+#mouse-effect figure {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
