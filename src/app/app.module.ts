@@ -9,6 +9,9 @@ import { GalleryComponent } from './components/gallery.component';
 import { MouseEffectComponent } from './components/mouse-effect.component';
 import { ScrollEffectComponent } from './components/scroll-effect.component';
 import { FormTerminosComponent } from './components/form-terminos.component';
+import { ApiComponent } from './components/api.component';
+
+import { routing, appRoutingProviders } from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,14 @@ import { FormTerminosComponent } from './components/form-terminos.component';
     GalleryComponent,
     MouseEffectComponent,
     ScrollEffectComponent,
-    FormTerminosComponent
+    FormTerminosComponent,
+    ApiComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing
   ],
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
