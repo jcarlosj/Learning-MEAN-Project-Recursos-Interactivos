@@ -21,7 +21,7 @@ export class SliderComponent {
             result => {
                 this .slideJson = result;  // Obtiene una cadena tipo JSON
 
-                console .log( 'Todo el archivo:', this .slideJson );
+                console.log( 'Todo el archivo (slider):', this .slideJson );
 
                 // Recorre cada item del 'Array' para obtener los datos de cada objeto contenido en el mismo
                 for( let i = 0; i < this .slideJson .length; i++ ) {

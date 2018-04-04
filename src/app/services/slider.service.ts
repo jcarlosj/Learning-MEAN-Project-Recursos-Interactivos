@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 
 export class SliderService {
-    /* Porpiedades (Atributos) */
+    /* Propiedades (Atributos) */
     public path_image = 'assets/images/slide/slide01.jpg';
     public urlJsonFile: any;
 
