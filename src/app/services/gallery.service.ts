@@ -6,9 +6,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 
-export class SliderService {
+export class GalleryService {
     /* DEBUG */
-    public path_image = 'assets/images/slide/slide01.jpg';
+    public path_image = 'assets/images/gallery/01.jpg';
 
     /* Método */
     public test(): string {
