@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index.component';
@@ -26,6 +26,7 @@ import { routing, appRoutingProviders } from './app.routing.module';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     routing
   ],
   providers: [appRoutingProviders],
