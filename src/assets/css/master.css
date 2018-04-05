@@ -45,6 +45,13 @@
 	padding:0px;
 }
 
+.cargando {
+	background-color: white;
+	color: red;
+	display: block; 
+	text-align: center;
+}
+
 /* Encabezado sitio */
 header {
 	background-color: white;
