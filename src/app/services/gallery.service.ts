@@ -14,7 +14,7 @@ export class GalleryService {
     /* Constructor */
     public constructor( private _http: Http ) {
         // Asigna la URL a la propiedad
-        this .urlJsonFile = 'http://tutorialesatualcance.com/galeria.json';
+        this.urlJsonFile = 'http://localhost/projects/JavaScript/angular-app/api/gallery.json';
     }
 
     /* Métodos */

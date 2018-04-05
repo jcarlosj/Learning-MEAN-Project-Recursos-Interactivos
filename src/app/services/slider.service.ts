@@ -14,7 +14,7 @@ export class SliderService {
     /* Constructor */
     public constructor( private _http: Http ) {
         // Asigna la URL a la propiedad
-        this .urlJsonFile = 'http://tutorialesatualcance.com/slide.json';
+        this.urlJsonFile = 'http://localhost/projects/JavaScript/angular-app/api/slider.json';
     }
 
     /* Métodos */
