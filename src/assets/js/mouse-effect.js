@@ -44,7 +44,7 @@ var mouseEffect = {
     // Recorre cada uno de los elementos 'figure'
     mouseEffect .figures .forEach( ( figure, index ) => {
 
-      figure .innerHTML = `<img src="images/mouse_effect/plano0${ index }.png">`;   // Agrega el elemento 'img' con el path de cada una de las imágenes a elemento 'figure'
+      figure .innerHTML = `<img src="../../assets/images/mouse_effect/plano0${ index }.png">`;   // Agrega el elemento 'img' con el path de cada una de las imágenes a elemento 'figure'
       figure .style .zIndex = -index;                                               // Define el orden de cada una de las imagenes como capas para superponeras unas sobre las otras en un orden adecuado
 
       setTimeout( () => {

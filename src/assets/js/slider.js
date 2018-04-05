@@ -85,7 +85,7 @@ var slider = {
   },
   // Ejecuta el movimiento del Slider y cambio de estado del Paginador
   accionPaginador : function ( event ) {
-    slider .pagina = event .target. parentNode .getAttribute( 'data-page' );    // Captura el atributo otorgado a la propiedad 'data-page' del elemento padre que posee el manejador (span)
+    slider .pagina = event .target. parentNode .getAttribute( 'value' );    // Captura el atributo otorgado a la propiedad 'value' del elemento padre que posee el manejador (span)
     slider .cambiaIndicadorPagina( event .target .parentNode );
 
     slider .mover( slider .pagina );
@@ -109,10 +109,10 @@ var slider = {
   mueveIndicadorPagina : function () {
     // Recorre las páginas del paginador
     slider .paginador .forEach( ( slide ) => {
-      //console .log( 'data-page', slide .getAttribute( 'data-page' ) );
+      //console .log( 'value', slide .getAttribute( 'value' ) );
 
       // Valida que el número de la diapositiva sea igual al número de pagina actual
-      if( slide .getAttribute( 'data-page' ) == slider .pagina ) {
+      if( slide .getAttribute( 'value' ) == slider .pagina ) {
         slider .cambiaIndicadorPagina( slide );
       }
     });
