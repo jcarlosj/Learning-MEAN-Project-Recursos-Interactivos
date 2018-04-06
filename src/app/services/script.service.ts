@@ -1,69 +1,58 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 
-import { AppExternalScripts } from '../app.external.scripts';
-
-declare var document: any;
+import { Scripts, ExternalScripts } from '../app.external.scripts';
 
 @Injectable()
 export class ScriptService {
     /* Propiedades (Atributos) */
-    private scripts: any = {};
+    private scripts: Scripts[] = [];
 
-    /* Constructor */
-    public constructor() {
-        // Recorre los elementos de la constante con las referencias de los archivos externos de JavaScript
-        AppExternalScripts .forEach( ( script: any ) => {
-            // Agrega cada uno de los scripts a un 'Array' usando el nombre como índice
-            this .scripts[ script .name ] = {
-                loaded: false,
-                src: script .src
-            };
-        });
-    }
+    // Carga
+    public load( script: Scripts ): Observable <Scripts> {
 
-    // Carga 
-    public load( ...scripts: string[] ) {
-        var promises: any[] = [];
+        return new Observable <Scripts> ( ( observer: Observer <Scripts> ) => {
 
-        scripts .forEach( script => promises .push( this .loadScript( script ) ) );
+            //var existingScript = this .scripts .find( s => s .name == script .name );
 
-        return Promise .all( promises );
-    }
+            var existingScript = this .scripts .find( script_js => {
 
-    // Carga el Script 
-    public loadScript( name: string ) {
-        return new Promise( ( resolve, reject ) => {
-            // Resuelve si ya esta cargado el script
-            if( this .scripts[ name ] .loaded ) {
-                resolve({ script: name, loaded: true, status: 'Ya está cargado' });
+                // Valida si la propiedad 'name' NO existe
+                if( !script_js .hasOwnProperty( 'name' ) ) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            // Complete if already loaded
+            if ( existingScript && existingScript .hasOwnProperty( 'loaded' ) ) {
+                observer .next( script );
+                observer .complete();
             }
             else {
-                // Carga el Script
-                let script = document .createElement( 'script' );      // Crea el elemento 'script'
+                // Add the script
+                this .scripts = [ ...this .scripts, script ];
 
-                // Agrega propiedades al elemento 'script'
-                script .type = 'text/javascript';
-                script .src = this .scripts[ name ] .src;
+                // Load the script
+                let scriptElement = document .createElement( 'script' );
+                scriptElement .type = 'text/javascript';
+                scriptElement .src = script.src;
 
-                // Valida el estado de la carga del 'script' (para IE)
-                if( script .readyState ) {
-                    script.onreadystatechange = null;
-                    this .scripts[ name ] .loaded = true;
-                    resolve({ script: name, loaded: true, status: 'Cargado' });
-                    /* NOTA: // 'onreadystatechange' manejador de Evento que es invodado cuando cambia el atributo 'readyState' */
-                }
-                else {
-                    // Otros navegadores
-                    script .onload = () => {
-                        this .scripts[ name ] .loaded = true;
-                        resolve({ script: name, loaded: true, status: 'Cargado' });
-                    };
-                }
+                scriptElement .onload = () => {
+                    script .loaded = true;
+                    observer .next( script );
+                    observer .complete();
+                };
 
-                script .onerror = ( error: any ) => resolve({ script: name, loaded: false, status: 'Cargado' });
-                document .getElementsByTagName( 'head' )[ 0 ] .appendChild( script );
+                scriptElement .onerror = ( error: any ) => {
+                    observer .error( `No puede cargar el Script ${ script .src }` );
+                };
 
+                document .getElementsByTagName( 'body' )[ 0 ] .appendChild( scriptElement );
             }
+
         });
     }
 }

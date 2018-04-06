@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SliderService } from '../services/slider.service';
 import { ScriptService } from '../services/script.service';
+import { Scripts } from '../app.external.scripts';
 
 @Component({
     selector: 'app-slider',
@@ -10,15 +11,22 @@ import { ScriptService } from '../services/script.service';
 export class SliderComponent {
     /* Propiedades (Atributos) */
     public slideJson: string;
+    private destino: Scripts = { name: 'slider', src: '../assets/js/slider.js', loaded: true };
 
     /* Constructor */
     public constructor( private _SliderService: SliderService, private _ScriptService: ScriptService ) {
         // console .log( 'Servicio Slider: ', _SliderService .test() );      // DEBUG
 
         // Carga el 'script' con el 'name' que esté registrado en nuestro archivo 'app.external.scripts.ts'
-        this ._ScriptService .load( 'slider' ) .then( data => {
-            console .log( 'Script Cargado...', data );
-        }) .catch( error =>  console .error( error ) );
+        this._ScriptService.load( this .destino ) .subscribe(
+            result => {
+                console .log( 'Script Cargado ..', result );
+            },
+            error => {
+                let message = <any> error;
+                console .log( message );
+            }
+        );
 
         /* Hacemos un llamado al método que hace la petición a través del Servicio y usamos el 'subscribe'
            para obtener el resultado a través de un 'CallBack' y poder imprimir el 'Observable' */
